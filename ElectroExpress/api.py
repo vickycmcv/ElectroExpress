@@ -1,7 +1,10 @@
 import flask
 from flask import request, jsonify
 
-from utils import look_for_brand, look_for_price_lowereq, look_for_device
+from utils import look_for_brand, look_for_price_lowereq, look_for_device, generate_bill
+
+from datetime import datetime
+
 
 
 app = flask.Flask(__name__)
@@ -40,7 +43,7 @@ PRODUCTS = {
        'price': 890.00},
 }
 
-BUYS = {20190123220155: [5, 5, 4]}
+BUYS = {}
 
 
 ################################## API ####################################### 
@@ -69,6 +72,18 @@ def stock():
         products = look_for_price_lowereq(price, products)
     
     return jsonify(products)
+
+@app.route('/buy', methods=['GET'])
+def buy():
+   """
+   Select id product/s for buying it/them and generate a bill
+   """
+   if 'id' in request.args: 
+      prod_ids = request.args['id'].split(":")
+      bill_number = str(f'{datetime.now():%Y%m%d%H%M%S}')
+      bill = generate_bill(bill_number, prod_ids, PRODUCTS)
+
+   return jsonify(bill)
 
 
 app.run()
