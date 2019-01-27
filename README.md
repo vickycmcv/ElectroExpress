@@ -1,6 +1,6 @@
 # ElectroExpress API
 
-## Consulatar stock:
+## Consultar stock:
 
 `http://127.0.0.1:5000/stock`
 
@@ -46,9 +46,17 @@ Diccionario de diccionarios de los distintos tickets generados al hacer compras.
 
 ## Realizar devoluciones 
 
-`http://127.0.0.1:5000/return`
+`http://127.0.0.1:5000/remove`
 
-Parámetros
+Parámetros:
 
+- `bill_number`: indicando el número de ticket de la compra, se elimina dicha
+compra de lista de compras. (`http://127.0.0.1:5000/remove?bill_number=20190126131626`)
+- `id`: indicando, además del número de ticket, el id del producto a devolver, 
+se retira de la lista de productos comprados el indicado.
+(`http://127.0.0.1:5000/remove?bill_number=20190126131626&id:2`)
 
-Devuelve
+Devuelve:
+
+Devuelve la lista de las compras (dicionario de listas) una vez eliminado lo 
+indicado (ticket entero o artículo concreto)

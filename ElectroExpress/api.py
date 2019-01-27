@@ -1,7 +1,8 @@
 import flask
 from flask import request, jsonify
 
-from utils import look_for_brand, look_for_price_lowereq, look_for_device, generate_bill
+from utils import (look_for_brand, look_for_price_lowereq, look_for_device, 
+                   generate_bill, remove_purchase_list, remove_product)
 
 from datetime import datetime
 
@@ -88,9 +89,6 @@ def buy():
 
    return jsonify(bill)
 
-
-
-
 @app.route('/purchases', methods=['GET'])
 def purchases_list():
    """ 
@@ -98,4 +96,19 @@ def purchases_list():
    """
    return jsonify(PURCHASES)
 
+@app.route('/remove', methods=['GET'])
+def remove():
+   """
+   Remove purchases with a given bill number
+   """
+   if 'bill_number' in request.args:
+      number = request.args['bill_number']
+      
+      if 'id' in request.args:
+         prod_id = request.args['id']
+         remove_bill = remove_product(number, prod_id, PURCHASES)
+      else:
+         remove_bill = remove_purchase_list(number, PURCHASES)
+   return jsonify(remove_bill)
+   
 app.run()

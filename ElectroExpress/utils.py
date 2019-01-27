@@ -52,3 +52,23 @@ def generate_bill(bill_number, prod_ids, products):
         return bill
 
 
+def remove_purchase_list(number, purchases):
+        """
+        Check if the given bill number is on PURCHASE. If it is, it delete the
+        bill from PURCHASE. If not, it gives the entire PURCHASE.
+        """
+        if number in purchases.keys():
+                purchases.pop(number)
+        return purchases
+
+
+def remove_product(number, prod_id, purchases):
+        """
+        Check in a given bill number the exactly prod_id which it has to be
+        removed.
+        """ 
+        products = purchases[number]
+        if prod_id in products:
+                products.remove(prod_id)
+        return purchases
+
