@@ -51,3 +51,4 @@ def generate_bill(bill_number, prod_ids, products):
                         bill = {}
         return bill
 
+

@@ -43,7 +43,7 @@ PRODUCTS = {
        'price': 890.00},
 }
 
-BUYS = {}
+PURCHASES = {}
 
 
 ################################## API ####################################### 
@@ -76,14 +76,26 @@ def stock():
 @app.route('/buy', methods=['GET'])
 def buy():
    """
-   Select id product/s for buying it/them and generate a bill
+   Select id product/s for buying it/them and generate a bill. 
+   Introduce the bills on the purchases dic.
    """
    if 'id' in request.args: 
       prod_ids = request.args['id'].split(":")
       bill_number = str(f'{datetime.now():%Y%m%d%H%M%S}')
       bill = generate_bill(bill_number, prod_ids, PRODUCTS)
+   if len(bill) > 0:
+      PURCHASES.update(bill)
 
    return jsonify(bill)
 
+
+
+
+@app.route('/purchases', methods=['GET'])
+def purchases_list():
+   """ 
+   Shows the updated purchases dic.
+   """
+   return jsonify(PURCHASES)
 
 app.run()

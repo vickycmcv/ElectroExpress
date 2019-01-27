@@ -36,6 +36,14 @@ compuesto por fecha y hora de la compra y una de las ids de los artículos compr
 En caso se introducir una id de un producto no existente en el stock, devuelve 
 un diccionario vacío como motivo de no poder realizar la compra: `{}`
 
+## Consultar compras
+
+`http://127.0.0.1:5000/purchases`
+
+Devuelve:
+
+Diccionario de diccionarios de los distintos tickets generados al hacer compras.
+
 ## Realizar devoluciones 
 
 `http://127.0.0.1:5000/return`
@@ -44,4 +52,3 @@ Parámetros
 
 
 Devuelve
-
