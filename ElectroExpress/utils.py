@@ -8,7 +8,7 @@ def look_for_device(device, products):
     """
     device_products ={}
     for prod_id, prod in products.items():
-        if prod['product_type'].lower() == device:
+        if prod['product_type'].lower() == device.lower():
             device_products[prod_id] = prod
     return device_products
 
@@ -19,7 +19,7 @@ def look_for_brand(brand, products):
     """
     brand_products = {}
     for prod_id, prod in products.items():
-        if prod['brand'].lower() == brand:
+        if prod['brand'].lower() == brand.lower():
             brand_products[prod_id] = prod
     return brand_products
 
