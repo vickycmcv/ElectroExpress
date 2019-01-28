@@ -80,7 +80,7 @@ def test_remove_one_product_does_not_remove_other_bill():
 
 
 def test_filter_by_device():
-    device = 'mobile'
+    device = 'Mobile'
     products = {1: {'product_type': 'mobile'}, 2: {'product_type': 'tablet'}}
 
     filtered_product_real = look_for_device(device, products)
