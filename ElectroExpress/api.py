@@ -50,7 +50,7 @@ PURCHASES = {}
 ################################## API ####################################### 
 @app.route('/', methods=['GET'])
 def home():
-    return "<h1>Welcome to ElecticExpress</h1>"
+    return "<h1>Welcome to ElectoExpress</h1>"
 
 
 @app.route('/stock', methods=['GET'])
@@ -74,11 +74,12 @@ def stock():
     
     return jsonify(products)
 
+
 @app.route('/buy', methods=['GET'])
 def buy():
    """
    Select id product/s for buying it/them and generate a bill. 
-   Introduce the bills on the purchases dic.
+   Introduce the bills on the purchases dict.
    """
    if 'id' in request.args: 
       prod_ids = request.args['id'].split(":")
@@ -89,12 +90,14 @@ def buy():
 
    return jsonify(bill)
 
+
 @app.route('/purchases', methods=['GET'])
 def purchases_list():
    """ 
-   Shows the updated purchases dic.
+   Shows the updated purchases dict.
    """
    return jsonify(PURCHASES)
+
 
 @app.route('/remove', methods=['GET'])
 def remove():
@@ -109,6 +112,7 @@ def remove():
          remove_bill = remove_product(number, prod_id, PURCHASES)
       else:
          remove_bill = remove_purchase_list(number, PURCHASES)
+
    return jsonify(remove_bill)
    
 app.run()

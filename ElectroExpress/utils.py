@@ -26,7 +26,7 @@ def look_for_brand(brand, products):
 
 def look_for_price_lowereq(price, products):
     """ 
-    Look for products of the with a price lower than the given price (number)
+    Look for products with a price lower or equal than the given price (number)
     in products (dict of dicts).
     """
     price_lowereq_products = {}
@@ -38,8 +38,8 @@ def look_for_price_lowereq(price, products):
 
 def generate_bill(bill_number, prod_ids, products):
         """
-        Check if the prod_ids (list) are in the stock (dic). If they are, it 
-        generate a bill (dic of lists). If not, it gives a empty bill
+        Check if the prod_ids (list) are in the stock (dict). If they are, it 
+        generate a bill (dict of lists). If not, it gives an empty bill.
         """
         bill = {}
         prod_id_list = []
@@ -54,8 +54,8 @@ def generate_bill(bill_number, prod_ids, products):
 
 def remove_purchase_list(number, purchases):
         """
-        Check if the given bill number is on PURCHASE. If it is, it delete the
-        bill from PURCHASE. If not, it gives the entire PURCHASE.
+        Check if the given bill number is in PURCHASE. If it is, it deletes the
+        bill from PURCHASE. If not, it returns the entire PURCHASE.
         """
         if number in purchases.keys():
                 purchases.pop(number)
@@ -64,8 +64,7 @@ def remove_purchase_list(number, purchases):
 
 def remove_product(number, prod_id, purchases):
         """
-        Check in a given bill number the exactly prod_id which it has to be
-        removed.
+        Check in a given bill number the prod_id which has to be removed.
         """ 
         products = purchases[number]
         if prod_id in products:
